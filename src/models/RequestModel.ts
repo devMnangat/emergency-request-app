@@ -9,7 +9,7 @@
         emergencyType: { type: String, required: true },
         description: { type: String },
         contactInfo: { type: String, required: true },
-        status: { type: String, default: "pending" },
+        status: { type: String, enum: ["pending", "in-progress", "resolved"], default: "pending" },
     });
     
     export const Request = models.Request || model<EmergencyRequest>("Request", RequestSchema);

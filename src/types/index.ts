@@ -7,4 +7,5 @@
         description?: string;
         contactInfo: string;
         status: 'pending' | 'in-progress' | 'resolved';
+        createdAt?: Date;
     }
