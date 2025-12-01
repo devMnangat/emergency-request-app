@@ -2,23 +2,14 @@
 
     // API route for the admin
 
-    import { NextRequest, NextResponse } from "next/server";
+    import { NextResponse } from "next/server";
     import { dbConnect } from "@/mongoose/dbConnect";
     import { Request as RequestModel } from "@/models/RequestModel";
 
 
     // Get all requests as admin
 
-    // export async function GET(req: NextRequest) {
-    //     try {
-    //         await dbConnect();
-    //         const requests = await RequestModel.find();
-    //         return NextResponse.json({ requests });
-    //     } catch (error) {
-    //         console.error("Error fetching requests:", error);
-    //         return NextResponse.json({ error: "Error fetching requests" }, { status: 500 });
-    //     }
-    // }
+   
 
 export async function GET() {
   try {

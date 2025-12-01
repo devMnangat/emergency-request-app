@@ -24,6 +24,12 @@ const RequestFormCard: React.FC<RequestFormCardProps> = ({ isAdmin = false }) =>
   ) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
+    if (name === "contactInfo") {
+  const digitsOnly = value.replace(/\D/g, "").slice(0, 10);
+  setForm(prev => ({ ...prev, contactInfo: digitsOnly }));
+  return;
+}
+
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,7 +76,6 @@ const RequestFormCard: React.FC<RequestFormCardProps> = ({ isAdmin = false }) =>
             required
           />
         </div>
-
         <div>
           <label className="block text-sm font-medium mb-1">Location</label>
           <input
@@ -106,16 +111,20 @@ const RequestFormCard: React.FC<RequestFormCardProps> = ({ isAdmin = false }) =>
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">Contact Info</label>
-          <input
-            type="text"
-            name="contactInfo"
-            value={form.contactInfo}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-400"
-            required
-          />
-        </div>
+  <label className="block text-sm font-medium mb-1">Contact Info</label>
+  <input
+    type="text"
+    name="contactInfo"
+    value={form.contactInfo}
+    onChange={handleChange}
+    pattern="^[0-9]{10}$"
+    maxLength={10}
+    placeholder="e.g. 0712345678"
+    className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-400"
+    required
+  />
+</div>
+
 
         {isAdmin && (
           <div>
