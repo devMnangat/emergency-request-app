@@ -35,11 +35,10 @@ import mongoose from "mongoose";
 // }
 
 
-export async function PATCH(req : NextRequest   , { params  } : { params : { id : string  } } ) {
+export async function PATCH(req: NextRequest, context: { params: Promise<{ id: string }> }) {
   try {
+    const { id } = await context.params;
     await dbConnect();
-    const { id } = params;
-
     const { status } = await req.json();
 
     if (!["resolved", "in-progress"].includes(status)) {
